@@ -29,4 +29,22 @@ class Usuario_model extends CI_Model{
          $this->UsuarioDAO->find($id);
          return $this->UsuarioDAO->get();
     }
+    
+    public function autentica($email, $senha){
+        $usuario = $this->db->get_where('usuario', array('email' => $email, 'senha' => $senha))->row();
+        
+        if (!empty($usuario)) {
+            $tipo = 1;
+            if($usuario->email == 'admin@admin.com'){
+                $tipo = 2;
+            }
+            
+            $usuario = array('nome' => $usuario->nome, 'email' => $usuario->email, 'tipo' => $tipo);
+            
+            $this->session->set_userdata('usuario', $usuario);
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
