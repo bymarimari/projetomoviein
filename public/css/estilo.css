@@ -58,3 +58,24 @@
      border-bottom: 1px solid #000;
      box-shadow: 0 1px 0 0 #000;
 }
+
+.filme {
+    margin-bottom: 10px;
+    cursor: pointer;
+    
+}
+.filme img {
+    width: 100%;
+    filter: brightness(70%);
+    transition: 0.5s;
+}
+.filme img:hover {
+    filter: brightness(100%);
+}
+
+
+
+
+.sanduiche {
+    color: #b71c1c;
+}
