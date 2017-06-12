@@ -117,3 +117,47 @@
                 </div>
             </form>
         </div>
+        
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $('.carousel.carousel-slider').carousel({fullWidth: true});
+                $(".button-collapse").sideNav();
+                
+                $('.search-btn').on('click', function(){
+                    $('.search-btn').hide();
+                    $('.search-input').show(500);
+                });
+             
+                $('.modal').modal();
+                $(".dropdown-button").dropdown();
+                
+                <?php if(empty($this->session->has_userdata('usuario'))) { ?>
+                    $('form#login').on('submit', function(e){
+                        e.preventDefault();
+                        
+                        var action = $(this).attr('action');
+                        var email = $('#login input[name=email]').val();
+                        var senha = $('#login input[name=senha]').val();
+                        
+                        $.ajax({
+                            url: action,
+                            type: 'post',
+                            data: {email: email, senha: senha},
+                            dataType: 'json',
+                            success: function(data){
+                                alert(data.mensagem);
+                                
+                                if (data.tipo == 'ok') {
+                                    window.location = "<?= base_url().'bancodefilmes'; ?>";
+                                }
+                            }
+                        });
+                    });
+                <?php } ?>
+                
+                
+        </script>
+    </body>
+</html>
