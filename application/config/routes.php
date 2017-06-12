@@ -58,3 +58,9 @@ $route['curiosidades/get'] = 'Curiosidades/get';
 $route['curiosidades/inserir'] = 'Curiosidades/inserir';
 $route['curiosidades/excluir'] = 'Curiosidades/excluir';
 $route['curiosidades/adicionar'] = 'Curiosidades/adicionar';
+
+$route['bancodefilmes'] = 'BancoDeFilmes/index';
+$route['bancodefilmes/get'] = 'BancoDeFilmes/get';
+$route['bancodefilmes/inserir'] = 'BancoDeFilmes/inserir';
+$route['bancodefilmes/excluir'] = 'BancoDeFilmes/excluir';
+$route['bancodefilmes/adicionar'] = 'BancoDeFilmes/adicionar';
