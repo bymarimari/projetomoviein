@@ -24,10 +24,20 @@
                     <li class="bar"><a href="<?= base_url(); ?>bancodefilmes">Banco de Filmes</a></li>
                     <li class="bar"><a href="<?= base_url(); ?>curiosidades">Curiosidades</a></li>
                     <li class="bar"><a href="<?= base_url(); ?>contato">Contato</a></li>
-            
+                    <?php if($this->session->has_userdata('usuario')) { 
+                        $usuario = $this->session->userdata('usuario'); ?>
+                        <li class="bar"><a class="dropdown-button" href="#!" data-activates="dropdown1">Olá, <?= $usuario['nome']; ?><i class="material-icons right">arrow_drop_down</i></a></li>
+                    <?php } else { ?>
+                        <a class="waves-effect waves-light btn red darken-4" href="#modalLogin">Login</a>
+                    <?php } ?>
                 </ul>
                 <ul class="side-nav" id="mobile-demo">
-                    
+                    <?php if($this->session->has_userdata('usuario')) { 
+                        $usuario = $this->session->userdata('usuario'); ?>
+                        <li><a class="dropdown-button" href="#!" data-activates="dropdown2">Olá, <?= $usuario['nome']; ?><i class="material-icons right">arrow_drop_down</i></a></li>
+                    <?php } else { ?>
+                        <li><a href="#modalLogin">Login</a></li>
+                    <?php } ?>
                     <li class="divider"></li>
                     <li><a href="<?= base_url(); ?>">Home</a></li>
                     <li><a href="<?= base_url(); ?>sobre">Sobre</a></li>
