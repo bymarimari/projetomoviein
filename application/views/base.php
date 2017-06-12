@@ -48,6 +48,19 @@
                 </ul>
             </div>
         </nav>
+                <ul id="dropdown1" class="dropdown-content black-text">
+             <?php if ($usuario['tipo'] == 1) { ?>
+            <li><a class="black-text" href="<?= base_url().'meusfilmes'; ?>">Meus filmes</a></li>
+            <?php } ?>
+            <li><a class="black-text" href="<?= base_url().'usuario/logout'; ?>">Logout</a></li>
+        </ul>
+        <ul id="dropdown2" class="dropdown-content black-text">
+             <?php if ($usuario['tipo'] == 1) { ?>
+            <li><a class="black-text" href="<?= base_url().'meusfilmes'; ?>">Meus filmes</a></li>
+            <?php } ?>
+            <li><a class="black-text" href="<?= base_url().'usuario/logout'; ?>">Logout</a></li>
+        </ul>
+        
         
         <main>
         	<?php $this->load->view($pagina); ?>
