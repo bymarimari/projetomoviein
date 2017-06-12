@@ -74,8 +74,23 @@
 }
 
 
-
-
 .sanduiche {
     color: #b71c1c;
+}
+
+.carousel-slider {
+    height: 495px !important;
+}
+
+.carousel-slider
+
+.carousel-item {
+    height: 500px; 
+}
+
+.imglogo {
+     content: url('../img/logomoviein.png');
+     margin-top: 8px;
+     height: 48px;
+     width: 146px;
 }
