@@ -48,4 +48,21 @@ class Curiosidades_model extends CI_Model{
 		    return array('tipo' => 'fail', 'mensagem' => $this->form_validation->error_string('',''));
 		}
     }
+ public function get($id){
+         $this->CuriosidadesDAO->find($id);
+         return $this->CuriosidadesDAO->get();
+    }
+    
+    public function listar(){
+        return $this->CuriosidadesDAO->listar();
+        
+    }
+   
+    public function excluir($id){
+        $curiosidade = $this->get($id);
+        if (!empty($curiosidade)) {
+            return $this->CuriosidadesDAO->deletar();
+            unlink(FCPATH.'public/img/curiosidades/'.$curiosidade->imagem);
+        }
+    }
 }

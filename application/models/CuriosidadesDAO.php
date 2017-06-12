@@ -17,3 +17,25 @@ class CuriosidadesDAO extends CI_Model{
         $this->campos['descricao'] = !empty($dados['descricao']) ? $dados['descricao'] : $this->campos['descricao'];
         $this->campos['imagem'] = !empty($dados['imagem']) ? $dados['imagem'] : $this->campos['imagem'];
     }
+    
+     public function find($id){
+        $this->campos = (array) $this->db->get_where($this->tabela, array($this->id_tabela => $id))->row();
+    }
+
+    public function get(){
+        return $this->campos;
+    }
+
+    public function listar(){
+        return $this->db->get_where($this->tabela)->result();
+    }
+
+    public function salvar(){
+        $this->db->set(array('titulo' => $this->campos['titulo'], 'descricao' => $this->campos['descricao'], 'imagem' => $this->campos['imagem']));
+        return empty($this->campos[$this->id_tabela]) ? $this->db->insert($this->tabela) : $this->db->update($this->tabela);
+    }
+
+    public function deletar(){
+        return $this->db->delete($this->tabela, array($this->id_tabela => $this->campos[$this->id_tabela]));
+    }
+}
