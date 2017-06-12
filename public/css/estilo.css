@@ -1,3 +1,22 @@
+body {
+    background-color: #000;
+    color: white;
+    background-image: url('../img/background3.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+}
+nav {
+    padding: 0px 20px;
+    margin-bottom: 2px;
+}
+nav ul .bar:hover {
+    border-bottom: 2px solid #b71c1c;
+}
+nav ul li a {
+    color: #424242;
+}
+
 .sobre {
     padding: 20px;
     background-color: rgba(0,0,0,0.4);
