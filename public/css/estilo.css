@@ -1,0 +1,15 @@
+.sobre {
+    padding: 20px;
+    background-color: rgba(0,0,0,0.4);
+}
+
+.sobre .sobre-imagem {
+    /*background-color: blue;*/
+    text-align: center;
+    margin-top: 22px;
+ 
+}
+
+.sobre .sobre-imagem img {
+    width: 200px;
+}
