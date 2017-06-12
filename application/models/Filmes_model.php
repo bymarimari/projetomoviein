@@ -2,6 +2,32 @@
 
 class Filmes_model extends CI_Model{
     
+    public function listar(){
+        return $this->db->get('filme')->result();
+    }
+    
+    public function listar_assiste(){
+    	$usuario = $this->session->userdata('usuario');
+    	$usuario = $this->db->get_where('usuario', array('email' => $usuario['email']))->row();
+    	$assistes = $this->db->get_where('assiste', array('id_usuario' => $usuario->id_usuario))->result();
+    	
+    	if (!empty($assistes)) {
+	    	for($i = 0; $i < count($assistes); $i++) {
+	    		$assistes[$i]->filme = $this->db->get_where('filme', array('id_filme' => $assistes[$i]->id_filme))->row();
+	    	}
+    	}
+    	
+    	return $assistes;
+    }
+    
+    public function excluir_assiste($id){
+        $filme = $this->get($id);
+        $usuario = $this->session->userdata('usuario');
+    	$usuario = $this->db->get_where('usuario', array('email' => $usuario['email']))->row();
+        if (!empty($filme) && !empty($usuario)) {
+           return $this->db->delete('assiste', array('id_filme' => $filme->id_filme, 'id_usuario' => $usuario->id_usuario));
+        }
+    }
     
     
     public function get($id){
@@ -51,3 +77,32 @@ class Filmes_model extends CI_Model{
 		    return array('tipo' => 'fail', 'mensagem' => $this->form_validation->error_string('',''));
 		}
     }
+    
+    public function excluir($id){
+        $filme = $this->get($id);
+        if (!empty($filme)) {
+        	if ($this->db->delete('assiste', array('id_filme' => $filme->id_filme))) {
+	            if ($this->db->delete('filme', array('id_filme' => $filme->id_filme))) {
+	            	unlink(FCPATH.'public/img/filmes/'.$filme->imagem);
+	            	return true;
+	            }
+        	}
+        }
+    }
+  
+    public function adicionar($id, $email){
+    	$filme = $this->db->get_where('filme', array('id_filme' => $id))->row();
+    	$usuario = $this->db->get_where('usuario', array('email' => $email))->row();
+    	if (!empty($filme) && !empty($usuario)){
+    		$assiste = $this->db->get_where('assiste', array('id_filme'=> $filme->id_filme, 'id_usuario' => $usuario->id_usuario))->row();
+    		if (empty($assiste)) {
+	    		$this->db->set(array('id_filme'=> $filme->id_filme, 'id_usuario' => $usuario->id_usuario));
+	    		return $this->db->insert('assiste');
+    		} else { 
+    			return false;
+    		}
+    	} else {
+    		return false;
+    	}
+    }
+}
