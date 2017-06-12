@@ -101,8 +101,6 @@ nav ul li a {
     height: 495px !important;
 }
 
-.carousel-slider
-
 .carousel-item {
     height: 500px; 
 }
@@ -112,4 +110,15 @@ nav ul li a {
      margin-top: 8px;
      height: 48px;
      width: 146px;
+}
+
+#modal1 {
+    width: 60%;
+   
+}
+
+.sociais img {
+    width: 40px;
+    float: right;
+    padding: 5px;
 }
